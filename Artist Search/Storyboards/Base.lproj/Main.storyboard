@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="Artist_Search" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Artists" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjq-gH-dcc">
+                                <rect key="frame" x="20" y="44" width="335" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ge7-Pd-eJy">
+                                <rect key="frame" x="363" y="44" width="31" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="31" id="TvN-kc-LWn"/>
+                                </constraints>
+                                <state key="normal" image="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="onSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0kb-WK-6rM"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FcK-q5-7df">
+                                <rect key="frame" x="20" y="86" width="374" height="776"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultsTableViewCell" rowHeight="464" id="i3q-7a-nht" customClass="SearchResultsTableViewCell" customModule="Artist_Search" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="464"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i3q-7a-nht" id="cW2-Hz-LwR">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="464"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QyZ-NH-wCc">
+                                                    <rect key="frame" x="20" y="11" width="334" height="336"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOD-Dr-WD9">
+                                                    <rect key="frame" x="20" y="382" width="91" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmc-Km-wdk">
+                                                    <rect key="frame" x="20" y="403" width="52" height="20"/>
+                                                    <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Name" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1i-TF-RJk">
+                                                    <rect key="frame" x="20" y="355" width="97" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2P-le-63S">
+                                                    <rect key="frame" x="20" y="422" width="100" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QyZ-NH-wCc" firstAttribute="leading" secondItem="cW2-Hz-LwR" secondAttribute="leadingMargin" id="Ar5-zS-VOT"/>
+                                                <constraint firstAttribute="bottom" secondItem="QyZ-NH-wCc" secondAttribute="bottom" constant="117" id="Jis-6O-q5F"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="l2P-le-63S" secondAttribute="bottom" constant="7" id="Kf8-t0-KPr"/>
+                                                <constraint firstItem="Xmc-Km-wdk" firstAttribute="leading" secondItem="l2P-le-63S" secondAttribute="leading" id="O0a-gy-thU"/>
+                                                <constraint firstItem="cOD-Dr-WD9" firstAttribute="leading" secondItem="Xmc-Km-wdk" secondAttribute="leading" id="TJp-7V-OIW"/>
+                                                <constraint firstItem="cOD-Dr-WD9" firstAttribute="top" secondItem="P1i-TF-RJk" secondAttribute="bottom" constant="6" id="TQo-Dq-PTm"/>
+                                                <constraint firstItem="QyZ-NH-wCc" firstAttribute="trailing" secondItem="cW2-Hz-LwR" secondAttribute="trailingMargin" id="Tjy-oK-850"/>
+                                                <constraint firstItem="QyZ-NH-wCc" firstAttribute="leading" secondItem="P1i-TF-RJk" secondAttribute="leading" id="XDl-p8-c4D"/>
+                                                <constraint firstItem="QyZ-NH-wCc" firstAttribute="top" secondItem="cW2-Hz-LwR" secondAttribute="topMargin" id="XKu-lO-HmD"/>
+                                                <constraint firstItem="QyZ-NH-wCc" firstAttribute="width" secondItem="cW2-Hz-LwR" secondAttribute="height" multiplier="167:232" id="boh-Jy-P5U"/>
+                                                <constraint firstItem="P1i-TF-RJk" firstAttribute="leading" secondItem="cOD-Dr-WD9" secondAttribute="leading" id="cbZ-Ca-cOD"/>
+                                                <constraint firstItem="Xmc-Km-wdk" firstAttribute="top" secondItem="cOD-Dr-WD9" secondAttribute="bottom" id="jKz-na-34I"/>
+                                                <constraint firstItem="P1i-TF-RJk" firstAttribute="top" secondItem="QyZ-NH-wCc" secondAttribute="bottom" constant="8" symbolic="YES" id="jr8-XP-w7h"/>
+                                                <constraint firstItem="l2P-le-63S" firstAttribute="top" secondItem="cOD-Dr-WD9" secondAttribute="bottom" constant="19" id="mGS-UX-vKe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="Genre" destination="Xmc-Km-wdk" id="wCm-3A-TsQ"/>
+                                            <outlet property="albumArtwork" destination="QyZ-NH-wCc" id="MWJ-YJ-eaL"/>
+                                            <outlet property="artistName" destination="cOD-Dr-WD9" id="JJk-E2-a2g"/>
+                                            <outlet property="releaseDate" destination="l2P-le-63S" id="vEb-IK-fy7"/>
+                                            <outlet property="trackName" destination="P1i-TF-RJk" id="OxF-au-5TI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xjq-gH-dcc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="A9C-Fq-Tvl"/>
+                            <constraint firstItem="xjq-gH-dcc" firstAttribute="bottom" secondItem="ge7-Pd-eJy" secondAttribute="bottom" id="DKx-o3-Cdj"/>
+                            <constraint firstItem="ge7-Pd-eJy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="EG8-3g-8rT"/>
+                            <constraint firstItem="ge7-Pd-eJy" firstAttribute="trailing" secondItem="FcK-q5-7df" secondAttribute="trailing" id="F7X-Io-Evw"/>
+                            <constraint firstItem="FcK-q5-7df" firstAttribute="top" secondItem="xjq-gH-dcc" secondAttribute="bottom" constant="8" id="OYt-Pb-7QM"/>
+                            <constraint firstItem="xjq-gH-dcc" firstAttribute="leading" secondItem="FcK-q5-7df" secondAttribute="leading" id="fSL-g4-eX8"/>
+                            <constraint firstItem="FcK-q5-7df" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jtt-V0-Asn"/>
+                            <constraint firstItem="xjq-gH-dcc" firstAttribute="top" secondItem="ge7-Pd-eJy" secondAttribute="top" id="kGx-m6-a3w"/>
+                            <constraint firstItem="xjq-gH-dcc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="qcm-Qr-bpF"/>
+                            <constraint firstItem="ge7-Pd-eJy" firstAttribute="leading" secondItem="xjq-gH-dcc" secondAttribute="trailing" constant="8" id="vRH-kx-9rg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumsCollection" destination="FcK-q5-7df" id="aZI-Gz-FHC"/>
+                        <outlet property="searchBar" destination="xjq-gH-dcc" id="s7P-zl-Sys"/>
+                        <outlet property="searchButton" destination="ge7-Pd-eJy" id="Fuw-d2-Fs1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201.44927536231884" y="70.982142857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
