@@ -12,19 +12,39 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var albumsCollection: UITableView!
     @IBOutlet weak var searchBar: UITextField!
     var activityIndicator = UIActivityIndicatorView(style: .large)
-    var results = [Track]()
+    lazy var results = [Track]()
+    let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set delegate and datasource for tableView
         albumsCollection.delegate = self
         albumsCollection.dataSource = self
+        //Setup spinner indicator
         setupSpinner()
+        //Add gesture to dismiss keyboarrd when tapping outside of keyboard
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
         self.view.addGestureRecognizer(tapGesture)
-
+        //Search button design
+        setupSearchButtonDesign()
+        setupSwipeDownToRefresh()
     }
-    func handleEmptyTable() {
-        if results.count == 0 {
-            
+    func setupSearchButtonDesign() {
+        searchButton.backgroundColor = .green
+        searchButton.layer.cornerRadius = searchButton.frame.height / 2
+        searchButton.layer.borderWidth = 1
+        searchButton.layer.borderColor = UIColor.green.cgColor
+    }
+    func setupSwipeDownToRefresh() {
+        if !(searchBar.text?.isEmpty ?? true) {
+            refreshControl.addTarget(self, action:  #selector(didSwipeDown), for: .valueChanged)
+            albumsCollection.refreshControl = refreshControl
+        }
+    }
+    @objc func didSwipeDown() {
+        results = searchItunesController().FetchAlbums(forArtistName: searchBar.text ?? "")
+        activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.albumsCollection.reloadData()
         }
     }
     func setupSpinner() {
@@ -35,6 +55,7 @@ class SearchViewController: UIViewController {
         if !(searchBar.text?.isEmpty ?? true) {
             results = searchItunesController().FetchAlbums(forArtistName: searchBar.text ?? "")
             activityIndicator.startAnimating()
+            setupSwipeDownToRefresh()
             DispatchQueue.main.async {
                 self.albumsCollection.reloadData()
             }
@@ -45,15 +66,15 @@ class SearchViewController: UIViewController {
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-    ///Used to display non interactive messages on the screen
+    ///Use to display non interactive messages on the screen
     func Toast(Title:String ,Text:String, delay:Int) -> Void {
-            let alert = UIAlertController(title: Title, message: Text, preferredStyle: .alert)
-            self.present(alert, animated: true)
-            let deadlineTime = DispatchTime.now() + .seconds(delay)
-            DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
-                alert.dismiss(animated: true, completion: nil)
-            })
-        }
+        let alert = UIAlertController(title: Title, message: Text, preferredStyle: .alert)
+        self.present(alert, animated: true)
+        let deadlineTime = DispatchTime.now() + .seconds(delay)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: {
+            alert.dismiss(animated: true, completion: nil)
+        })
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,6 +91,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.releaseDate.text = albumAtRow.releaseDate
         cell.albumArtwork.load(url: URL(string: albumAtRow.artworkUrl60 ?? "")!)
         activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
         return cell
     }
 }

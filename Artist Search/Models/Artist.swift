@@ -11,7 +11,7 @@ struct TrackResponse: Decodable {
     let results: [Track]
 }
 
-class Track: Decodable, Identifiable {
+class Track: Decodable {
     var wrapperType: String?
     var kind: String?
     var collectionId: Int?
